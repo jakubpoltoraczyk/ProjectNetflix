@@ -1,0 +1,21 @@
+Title: Creating MovieDescription class
+Reported: 21.08.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+Finished:
+
+Description: 
+    Create class, which provides functionality connected with movie description.
+    The main idea is to enable user to set and get description of the movie, using an object, which is an instance of this class.
+    We'd like to have a possibility to support some kind of short and long version of description.
+    Please also add some file like e.g "example_main.py", which will show functionalities of the new created class and will be used for testing.
+    Example usage (pseudocode):
+    """
+    * Create new object *
+    >>> Add short description: Father meets his son after many years of separation.
+    >>> Add long description: After many years of separation, father meets his son on the desert island.
+    >>> Object was correctly created
+    * Get information *
+    >>> Description of the move:
+    >>> Short: Father meets his son after many years of separation.
+    >>> Long: After many years of separation, father meets his son on the desert island.
+    """
