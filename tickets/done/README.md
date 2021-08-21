@@ -1,0 +1,1 @@
+Directory to store tickets, which have been already implemented and finished
