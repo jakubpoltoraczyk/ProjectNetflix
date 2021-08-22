@@ -1,21 +1,58 @@
 class MovieDescription(object):
-    def __init__(self, name, short_description, long_description):
-        self.__name = name
+    """Class which give us the most important information about watched movie"""
+
+    def __init__(self, title, short_description, long_description):
+        """Contains three basic arguments about movie
+        title => name of seen movie
+        short description => a short summary of movie
+        long description => a long summary of movie"""
+        self.__title = title
         self.__short_description = short_description
         self.__long_description = long_description
 
+    def set_title(self, title):
+        """Help to change a title
+        Args:
+            title => new title which will be set"""
+        title = input("Give a new title of this movie: ")
+        self.__title = title
+
+    def set_long_description(self, long_description):
+        """Help to change a long description
+        Args:
+            long_description => new long description which will be set"""
+        long_description = input("Give a new long description of this movie: ")
+        self.__long_description = long_description
+
+    def set_short_description(self, short_description):
+        """Help to change a short description
+        Args:
+            short_description => new short description which will be set"""
+        short_description = input("Give a new short description of this movie: ")
+        self.__short_description = short_description
+
     def get_short_description(self):
+        """Provide short description
+        Returns :
+            a short summary of movie"""
         return self.__short_description
 
     def get_long_description(self):
+        """Provide long description
+        Returns :
+            a summary of movie in few sentences"""
         return self.__long_description
 
-    def get_name(self):
-        return self.__name
+    def get_title(self):
+        """Provide a title
+        Returns:
+            a title of this movie"""
+        return self.__title
 
 
 def new_object(movies):
-    name = input("Give a title of your last watched movie: ")
+    """Create a new object of MovieDescription Class. Used after watching new film."""
+    title = input("Give a title of your last watched movie: ")
     short_description = input("Write a short description of this movie: ")
     long_description = input("Write a expanded description of this movie: ")
-    movies[len(movies)] = MovieDescription(name, short_description, long_description)
+    movies[len(movies)] = MovieDescription(title, short_description, long_description)

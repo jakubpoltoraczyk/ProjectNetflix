@@ -20,11 +20,10 @@ def main():
         elif click_01 == 2:
 
             for x in movies:
-                print(x + 1, "-", movies[x].get_name())
+                print(x + 1, "-", movies[x].get_title())
             click_02 = int(input("Write which one do you choose: "))
-            print("Title: ", movies[click_02 - 1].get_name())
+            print("Title: ", movies[click_02 - 1].get_title())
             print("Short description: ", movies[click_02 - 1].get_short_description())
             print("Long description: ", movies[click_02 - 1].get_long_description())
-
 
 main()
