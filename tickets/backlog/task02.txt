@@ -1,0 +1,7 @@
+Title: Creating Date class
+Reported: 22.08.2021 by Jakub Półtoraczyk
+Assigned: Jakub Półtoraczyk
+Finished:
+
+Description: 
+    Create class, which will represent a normal date in format: "DD.MM.YYYY" e.g. "22.08.2021"
