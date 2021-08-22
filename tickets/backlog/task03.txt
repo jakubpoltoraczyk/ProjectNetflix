@@ -1,0 +1,12 @@
+Title: Creating Person class
+Reported: 22.08.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+Finished:
+
+Description: 
+    Create class, which will represents person (or in other words: basic personal information).
+    What's really important, remember that this class will be a base class of next classes: Actor and Director.
+    So please think what are common elements from both ot these jobs/people and contain them in new created class.
+    Add few methods, with which ones we can get easily access to members of instance of this class, maybe if you'd like to you can also add
+    some kind of protection e.g. user shouldn't be able to set empty personal name (in the reality everybody has a name).
+    Also add examplemain.py file, which will be a demonstration of this new created class. 
