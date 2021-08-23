@@ -1,6 +1,5 @@
 from moviedescription import MovieDescription, new_object
 
-
 def main():
     movies = {}
     click_01 = None

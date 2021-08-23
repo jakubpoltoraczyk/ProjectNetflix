@@ -4,7 +4,7 @@ class MovieDescription(object):
     def __init__(self, title, short_description, long_description):
         """Contains three basic arguments about movie
 
-        Params:
+        Args:
             title : name of seen movie
             short description : a short summary of movie
             long description : a long summary of movie"""
