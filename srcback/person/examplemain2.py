@@ -14,4 +14,5 @@ def main():
     print(people[0].get_name())
     print(people[0].get_age())
 
+
 main()
