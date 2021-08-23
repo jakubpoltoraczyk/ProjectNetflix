@@ -3,43 +3,41 @@ class MovieDescription(object):
 
     def __init__(self, title, short_description, long_description):
         """Contains three basic arguments about movie
-        title => name of seen movie
-        short description => a short summary of movie
-        long description => a long summary of movie"""
+        Params:
+            title : name of seen movie
+            short description : a short summary of movie
+            long description : a long summary of movie"""
         self.__title = title
         self.__short_description = short_description
         self.__long_description = long_description
 
     def set_title(self, title):
-        """Help to change a title
+        """Change a title
         Args:
-            title => new title which will be set"""
-        title = input("Give a new title of this movie: ")
+            title : new title which will be set"""
         self.__title = title
 
     def set_long_description(self, long_description):
-        """Help to change a long description
+        """Change a long description
         Args:
-            long_description => new long description which will be set"""
-        long_description = input("Give a new long description of this movie: ")
+            long_description : new long description which will be set"""
         self.__long_description = long_description
 
     def set_short_description(self, short_description):
-        """Help to change a short description
+        """Change a short description
         Args:
-            short_description => new short description which will be set"""
-        short_description = input("Give a new short description of this movie: ")
+            short_description : new short description which will be set"""
         self.__short_description = short_description
 
     def get_short_description(self):
         """Provide short description
-        Returns :
+        Returns:
             a short summary of movie"""
         return self.__short_description
 
     def get_long_description(self):
         """Provide long description
-        Returns :
+        Returns:
             a summary of movie in few sentences"""
         return self.__long_description
 
