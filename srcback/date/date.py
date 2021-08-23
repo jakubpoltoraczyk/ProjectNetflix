@@ -38,7 +38,7 @@ class Date:
         if self.__validate_day(day):
             self.__day = day
         else:
-            # todo: replace print with exception
+            # todo: Replace print with exception
             print("Incorrect day number")
 
     def set_month(self, month):
@@ -49,7 +49,7 @@ class Date:
         if self.__validate_month(month):
             self.__month = month
         else:
-            # todo: replace print with exception
+            # todo: Replace print with exception
             print("Incorrect month number")
 
     def set_year(self, year):
@@ -60,8 +60,8 @@ class Date:
         if self.__validate_year(year):
             self.__year = year
         else:
-            # todo: replace print with exception
-            print("Incorrect month number")
+            # todo: Replace print with exception
+            print("Incorrect year number")
 
     def get_day(self):
         """Provide day
@@ -90,14 +90,14 @@ class Date:
         Returns:
             Date as a string"""
         whole_date = ""
-        whole_date += (str(self.__day) + ".")
-        whole_date += (str(self.__month) + ".")
+        whole_date += str(self.__day) + "."
+        whole_date += str(self.__month) + "."
         whole_date += str(self.__year)
         return whole_date
 
     def __validate_day(self, day):
         """Check if given day is correct for current selected month"""
-        if day <= self.__enum_days_in_month.get(self.__month):
+        if 1 <= day <= self.__enum_days_in_month.get(self.__month):
             return True
         return False
 

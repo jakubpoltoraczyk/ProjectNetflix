@@ -3,23 +3,29 @@ from dateutils import DateUtils
 
 
 def main():
-    first_date = Date(10, 12, 2010)
-    second_date = Date(15, 10, 2018)
+    first_date = Date(10, 12, 2018)
+    second_date = Date(11, 3, 2017)
 
-    print("First date day:", first_date.get_day())
-    print("Second date year:", second_date.get_year())
+    print("At the beginning:")
+    print("First date:", first_date.get_whole_date())
+    print("Second_date:", second_date.get_whole_date())
 
-    day = int(input("Set new first date day:"))
-    year = int(input("Set new second date year:"))
-    first_date.set_day(day)
-    second_date.set_year(year)
+    value = int(input("\nSet new year of first date: "))
+    first_date.set_year(value)
 
-    print("First date day:", first_date.get_day())
-    print("Second date year:", second_date.get_year())
+    value = int(input("Set new day of second date: "))
+    second_date.set_day(value)
 
-    print("Whole first date:", first_date.get_whole_date())
-    print("Whole second date:", second_date.get_whole_date())
+    print("\nAt the end:")
+    print("First date:", first_date.get_whole_date())
+    print("Second_date:", second_date.get_whole_date())
 
-    print("Younger date:", DateUtils.get_younger(first_date, second_date).get_whole_date())
+    print("\nYounger date:", DateUtils.get_younger(first_date, second_date).get_whole_date())
+    print("Older date:", DateUtils.get_older(first_date, second_date).get_whole_date())
+    print(
+        "Difference between dates:",
+        DateUtils.get_difference_in_years(first_date, second_date),
+        "year(s)",
+    )
 
 main()
