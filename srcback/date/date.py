@@ -24,8 +24,8 @@ class Date:
 
         Params:
             day (int): Number to set as a day
-            month(int): Number to set as a month
-            year(int): Number to set as a year"""
+            month (int): Number to set as a month
+            year (int): Number to set as a year"""
         self.__day = day
         self.__month = month
         self.__year = year
@@ -90,10 +90,8 @@ class Date:
         Returns:
             Date as a string"""
         whole_date = ""
-        whole_date += str(self.__day)
-        whole_date += "."
-        whole_date += str(self.__month)
-        whole_date += "."
+        whole_date += (str(self.__day) + ".")
+        whole_date += (str(self.__month) + ".")
         whole_date += str(self.__year)
         return whole_date
 

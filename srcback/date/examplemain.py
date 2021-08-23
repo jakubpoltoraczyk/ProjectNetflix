@@ -1,4 +1,5 @@
 from date import Date
+from dateutils import DateUtils
 
 
 def main():
@@ -19,5 +20,6 @@ def main():
     print("Whole first date:", first_date.get_whole_date())
     print("Whole second date:", second_date.get_whole_date())
 
+    print("Younger date:", DateUtils.get_younger(first_date, second_date).get_whole_date())
 
 main()
