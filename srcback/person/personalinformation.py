@@ -1,22 +1,22 @@
 class Person(object):
-    """Class which give us the most importantant information about an actor or director"""
+    """Class which give us the most important information about a person"""
 
-    def __init__(self, name, surname, nationality, age, gender, photo):
+    def __init__(self, name, surname, nationality, age, gender, photo_link):
         """Contains basic information about this person
 
         Params:
-            name : the name of this person
-            surname : the surname of person
-            nationality : nationality where she/he live
+            name.capitalize() : the name of this person writing capital letter
+            surname.capitalize() : the surname of person writing capital letter
+            nationality.capitalize() : nationality writing capital letter where she/he live
             age(int) : the age of this person
             gender : the gender of this person
-            photo : url link image of this person
+            photo_link_link : url link image of this person
         """
         self.__name = name.capitalize()
         self.__nationality = nationality.capitalize()
         self.__age = age
         self.__gender = gender
-        self.__photo = photo
+        self.__photo_link = photo_link
         self.__surname = surname.capitalize()
 
     def get_name(self):
@@ -54,12 +54,12 @@ class Person(object):
             gender of this person"""
         return self.__gender
 
-    def get_photo(self):
+    def get_photo_link(self):
         """Provide photo link
 
         Returns:
             the url photo link of this person"""
-        return self.__photo
+        return self.__photo_link
 
     def set_name(self, name):
         """Change the name
@@ -93,19 +93,19 @@ class Person(object):
             self.__age = age
 
     def set_gender(self, gender):
-        """Change the gender
+        """Change the gender, only allows to use strings : "male", "female"
 
         Returns:
             gender : new gender which will be set"""
         if self.__validate_gender(gender):
             self.__gender = gender
 
-    def set_photo(self, photo):
-        """Change the photo
+    def set_photo_link(self, photo_link):
+        """Change the photo_link
 
         Args:
-            photo : new url photo link which will be set"""
-        self.__photo = photo
+            photo_link : new url photos link which will be set"""
+        self.__photo_link = photo_link
 
     def __validate_name(self, name):
         """Check if name isn't empty
@@ -130,7 +130,7 @@ class Person(object):
 
         Returns:
             True if age > 0, otherwise false"""
-        if age > 0:
+        if  120 > age > 0:
             return True
         return False
 
@@ -166,5 +166,5 @@ def add_person(people):
 
     while gender not in ["male", "female"]:
         gender = input("Write the gender of the person: ")
-    photo = input("Add photo link of the person: ")
-    people[len(people)] = Person(name, surname, nationality, age, gender, photo)
+    photo_link = input("Add photo_link link of the person: ")
+    people.append(Person(name, surname, nationality, age, gender, photo_link))

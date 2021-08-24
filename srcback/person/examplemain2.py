@@ -2,11 +2,11 @@ from personalinformation import Person, add_person
 
 
 def main():
-    people = {}
+    people = []
     add_person(people)
     for x in people:
-        print(people[x].get_gender())
-        print(people[x].get_name())
+        print(x.get_gender())
+        print(x.get_name())
     name = input("Write new name: ")
     age = int(input("Write new value of age"))
     people[0].set_name(name)
