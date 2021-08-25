@@ -5,19 +5,19 @@ class Person(object):
         """Contains basic information about this person
 
         Params:
-            name.capitalize() : the name of this person writing capital letter
-            surname.capitalize() : the surname of person writing capital letter
-            nationality.capitalize() : nationality writing capital letter where she/he live
+            name : the name of this person writing capital letter
+            surname: the surname of person writing capital letter
+            nationality : nationality writing capital letter where she/he live
             age(int) : the age of this person
             gender : the gender of this person
             photo_link_link : url link image of this person
         """
         self.__name = name.capitalize()
+        self.__surname = surname.capitalize()
         self.__nationality = nationality.capitalize()
         self.__age = age
         self.__gender = gender
         self.__photo_link = photo_link
-        self.__surname = surname.capitalize()
 
     def get_name(self):
         """Provide name
@@ -130,7 +130,7 @@ class Person(object):
 
         Returns:
             True if age > 0, otherwise false"""
-        if  120 > age > 0:
+        if 120 > age > 0:
             return True
         return False
 
