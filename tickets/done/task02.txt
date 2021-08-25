@@ -4,4 +4,4 @@ Assigned: Jakub Półtoraczyk
 Finished:
 
 Description: 
-    Create class, which will be represented a normal date in format: "DD.MM.YYYY" e.g. "22.08.2021"
+    Create class, which will represent a normal date in format: "DD.MM.YYYY" e.g. "22.08.2021"
