@@ -1,0 +1,11 @@
+Title: Refactor Person base class to use dates
+Reported: 25.08.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+
+Description: 
+    So recently we added new Date and DateUtils classes, which provide some functionality related to dates.
+    Currently we store in Person class `age` variable.
+    Please remove it and add two new variables: date_of_birth and date_of_death (obviously find a way how to consult if someone is alive or not).
+    Important! Refactor means that functionality of the class in general shouldn't be changed, only improved (e.g. using new Date class and methods from 
+    DateUtils instead of creating age variable), but of course you can add some methods like get_date_of_birth etc.
+    
