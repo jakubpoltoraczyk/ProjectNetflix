@@ -26,9 +26,10 @@ class Date:
             day (int): Number to set as a day
             month (int): Number to set as a month
             year (int): Number to set as a year"""
-        self.__day = day
-        self.__month = month
-        self.__year = year
+        self.__day = self.__month = self.__year = None
+        self.set_year(year)
+        self.set_month(month)
+        self.set_day(day)
 
     def set_day(self, day):
         """Set new day
@@ -89,8 +90,9 @@ class Date:
 
         Returns:
             Date as a string"""
-        whole_date = ""
+        whole_date = ("0" if self.__day < 10 else "")
         whole_date += str(self.__day) + "."
+        whole_date += ("0" if self.__month < 10 else "")
         whole_date += str(self.__month) + "."
         whole_date += str(self.__year)
         return whole_date
