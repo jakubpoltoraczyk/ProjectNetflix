@@ -1,5 +1,6 @@
 from moviedescription import MovieDescription, new_object
 
+
 def main():
     movies = {}
     click_01 = None
@@ -29,21 +30,25 @@ def main():
         elif click_01 == 3:
             for x in movies:
                 print(x + 1, "-", movies[x].get_title())
-            click_02 = int(input("Write the number of movie which you want to update: "))
-            print("""
+            click_02 = int(
+                input("Write the number of movie which you want to update: ")
+            )
+            print(
+                """
             1 - change the title
             2 - change short information
-            3 - change long information""")
+            3 - change long information"""
+            )
             click_03 = int(input("Write which aspect you want to change: "))
-            if click_03 ==1:
+            if click_03 == 1:
                 title = input("Write new title: ")
-                movies[click_02-1].set_title(title)
-            if click_03 ==2:
+                movies[click_02 - 1].set_title(title)
+            if click_03 == 2:
                 short_description = input("Write new short description: ")
-                movies[click_02-1].short_description(short_description)
-            if click_03 ==3:
+                movies[click_02 - 1].short_description(short_description)
+            if click_03 == 3:
                 long_description = input("Write new long description: ")
-                movies[click_02-1].set_long_description(long_description)
-                
+                movies[click_02 - 1].set_long_description(long_description)
+
 
 main()
