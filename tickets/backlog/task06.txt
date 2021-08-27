@@ -1,0 +1,7 @@
+Title: Create derived Actor class
+Reported: 27.08.2021 by Jakub Półtoraczyk
+Assigned: Jakub Półtoraczyk
+
+Description: 
+    Create derived Actor class, which will inherit from base Person class
+    
