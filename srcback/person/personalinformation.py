@@ -7,7 +7,7 @@ now = datetime.datetime.now()
 class Person(object):
     """Class which give us the most important information about a person"""
 
-    def __init__(self, name, surname, nationality, date_of_birth, gender, photo_link, age, date_of_death):
+    def __init__(self, name, surname, nationality, date_of_birth, gender, photo_link, date_of_death):
         """Contains basic information about this person
 
         Params:
@@ -18,18 +18,15 @@ class Person(object):
             gender : the gender of this person
             photo_link_link : url link image of this person
         """
-        self.__name = name.capitalize()
-        self.__age = age
-        self.__surname = surname.capitalize()
-        self.__nationality = nationality.capitalize()
-        self.__date_of_birth  = date_of_birth 
-        self.__date_of_death = date_of_death
-        self.__gender = gender
-        self.__photo_link = photo_link
-        self.__validate_name(name)
-        self.__validate_surname( surname)
+        self.__name = self.__surname = self.__nationality = self.__date_of_birth  = self.__date_of_death = self.__gender = self.__photo_link = None
         self.set_date_of_birth( date_of_birth, date_of_death)
         self.set_date_of_death( date_of_birth, date_of_death)
+        self.set_surname(surname)
+        self.set_nationality(nationality)
+        self.set_date_of_birth( date_of_birth, date_of_death)
+        self.set_date_of_death( date_of_birth, date_of_death)
+        self.set_gender(gender)
+        self.set_photo_link(photo_link)
     def get_name(self):
         """Provide name
 
@@ -42,7 +39,8 @@ class Person(object):
 
         Returns:
             the age of person"""
-        return self.__age
+        age = DateUtils.get_difference_in_years(date_of_death, date_of_birth)
+        return age
 
     def get_surname(self):
         """Provide surname
@@ -204,8 +202,7 @@ def add_person(people):
         month = int(now.month)
         year = int(now.year)
         date_of_death = Date(day, month, year)
-    age = DateUtils.get_difference_in_years(date_of_death, date_of_birth)
     while gender not in ["male", "female"]:
         gender = input("Write the gender of the person: ")
     photo_link = input("Add photo_link link of the person: ")
-    people.append(Person( name, surname, nationality, date_of_birth, gender, photo_link, age, date_of_death))
+    people.append(Person( name, surname, nationality, date_of_birth, gender, photo_link, date_of_death))

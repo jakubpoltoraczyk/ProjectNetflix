@@ -54,7 +54,6 @@ class MovieDescription(object):
             a title of this movie"""
         return self.__title
 
-
 def new_object(movies):
     """Create a new object of MovieDescription Class. Used after watching new film."""
     title = input("Give a title of your last watched movie: ")

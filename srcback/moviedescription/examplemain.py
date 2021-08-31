@@ -1,6 +1,5 @@
 from moviedescription import MovieDescription, new_object
 
-
 def main():
     movies = {}
     click_01 = None
@@ -49,6 +48,5 @@ def main():
             if click_03 == 3:
                 long_description = input("Write new long description: ")
                 movies[click_02 - 1].set_long_description(long_description)
-
 
 main()
