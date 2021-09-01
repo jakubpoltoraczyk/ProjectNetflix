@@ -3,7 +3,7 @@ from dateutils import DateUtils
 
 
 def main():
-    first_date = Date(4, 6, 2020)
+    first_date = Date(4, 8, 2020)
     second_date = Date(11, 8, 2018)
 
     print("At the beginning:")
@@ -30,6 +30,7 @@ def main():
         DateUtils.get_difference_in_years(first_date, second_date),
         "year(s)",
     )
+    print("Are dates equal?", DateUtils.are_equal(first_date, second_date))
 
 
 main()
