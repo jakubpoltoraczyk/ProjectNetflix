@@ -76,8 +76,4 @@ class DateUtils:
         Returns:
             True if date are equals, otherwise false
         """
-        return (
-            True
-            if first_date.get_whole_date() == second_date.get_whole_date()
-            else False
-        )
+        return (True if first_date.get_whole_date() == second_date.get_whole_date() else False)
