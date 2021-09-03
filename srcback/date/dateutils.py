@@ -64,3 +64,16 @@ class DateUtils:
             Difference in two dates in years as an integer value
         """
         return abs(first_date.get_year() - second_date.get_year())
+
+    @staticmethod
+    def are_equal(first_date, second_date):
+        """Check if two dates are equal or not
+
+        Args:
+            first_date (Date): First date to compare
+            second_date (Date): Second date to compare
+
+        Returns:
+            True if date are equals, otherwise false
+        """
+        return (True if first_date.get_whole_date() == second_date.get_whole_date() else False)
