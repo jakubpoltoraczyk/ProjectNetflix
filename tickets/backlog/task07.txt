@@ -1,0 +1,8 @@
+Title: Create derived Actor class
+Reported: 03.09.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+
+Description: 
+    Create derived Director class, which will inherit from base Person class
+    You can suggest what to do looking at Actor class from task06-create-actor-class (this is my task and I've added changes recently on github,
+    but not created pull request yet)
