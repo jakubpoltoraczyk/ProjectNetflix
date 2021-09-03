@@ -15,7 +15,7 @@ class Person(object):
         date_of_birth,
         gender,
         photo_link,
-        date_of_death,
+        date_of_death = Date(now.day, now.month, now.year)
     ):
         """Contains basic information about this person
 
@@ -27,13 +27,8 @@ class Person(object):
             gender : the gender of this person
             photo_link_link : url link image of this person
         """
-        self.__name = (
-            self.__surname
-        ) = (
-            self.__nationality
-        ) = (
-            self.__date_of_birth
-        ) = self.__date_of_death = self.__gender = self.__photo_link = None
+        self.__name = self.__surname = self.__nationality = self.__date_of_birth = self.__gender = self.__photo_link = None
+        self.set_name(name)
         self.set_surname(surname)
         self.set_nationality(nationality)
         self.set_date_of_birth(date_of_birth, date_of_death)
@@ -209,11 +204,6 @@ def add_person(people):
         day = int(input("Write day of death: "))
         month = int(input("Write month of death: "))
         year = int(input("Write year of death: "))
-        date_of_death = Date(day, month, year)
-    elif date_of_death == "no":
-        day = int(now.day)
-        month = int(now.month)
-        year = int(now.year)
         date_of_death = Date(day, month, year)
     while gender not in ["male", "female"]:
         gender = input("Write the gender of the person: ")
