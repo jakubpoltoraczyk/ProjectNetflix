@@ -11,8 +11,11 @@ class DateUtils:
         pass
 
     @staticmethod
-    def get_younger(first_date, second_date):
+    def get_older(first_date, second_date):
         """Compare two dates and return the younger one
+
+        As an example: 2010 is older date than 1950 (2010 > 1950)
+
 
         Args:
             first_date (Date): First date to compare
@@ -21,7 +24,7 @@ class DateUtils:
         Returns:
             If dates are equal return first date, otherwise return the younger one
         """
-        if first_date.get_whole_date == second_date.get_whole_date:
+        if first_date.get_whole_date() == second_date.get_whole_date():
             return first_date
 
         first_value = first_date.get_year()
@@ -39,8 +42,10 @@ class DateUtils:
         return first_date if first_value > second_value else second_date
 
     @staticmethod
-    def get_older(first_date, second_date):
+    def get_younger(first_date, second_date):
         """Compare two dates and return the older one
+
+        As an example: 1950 is younger date than 2010 (1950 < 2010)
 
         Args:
             first_date (Date): First date to compare
@@ -49,8 +54,8 @@ class DateUtils:
         Returns:
             If dates are equal return first date, otherwise return the older one
         """
-        younger_date = DateUtils.get_younger(first_date, second_date)
-        return first_date if younger_date == second_date else second_date
+        older_date = DateUtils.get_older(first_date, second_date)
+        return first_date if older_date == second_date else second_date
 
     @staticmethod
     def get_difference_in_years(first_date, second_date):

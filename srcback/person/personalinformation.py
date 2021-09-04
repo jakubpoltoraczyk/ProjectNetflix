@@ -35,6 +35,7 @@ class Person(object):
             date_of_death:  the date of death of this person
         """
         self.__name = self.__surname = self.__nationality = self.__date_of_birth = self.__gender = self.__photo_link = None
+        self.__date_of_death = date_of_death
         self.set_name(name)
         self.set_surname(surname)
         self.set_nationality(nationality)
@@ -55,7 +56,7 @@ class Person(object):
 
         Returns:
             the age of person"""
-        age = DateUtils.get_difference_in_years(date_of_death, date_of_birth)
+        age = DateUtils.get_difference_in_years(self.__date_of_death, self.__date_of_birth)
         return age
 
     def get_surname(self):
@@ -79,12 +80,12 @@ class Person(object):
             the date of birth of this person"""
         return self.__date_of_birth
 
-    def get_date_of_death(self, date_of_death):
+    def get_date_of_death(self):
         """Provide age
 
         Returns:
             the date of death of this person, if he is still alive, prints still alive"""
-        if DateUtils.are_equal(date_of_death, Date(now.day, now.month, now.year)):
+        if DateUtils.are_equal(self.__date_of_death, Date(now.day, now.month, now.year)):
             print("still alive")
         else:
             return self.__date_of_death
@@ -117,7 +118,7 @@ class Person(object):
         Args:
             surname : new surname which will be set"""
         if self.__validate_surname(surname):
-            self.__name = surname.capitalize()
+            self.__surname = surname.capitalize()
 
     def set_nationality(self, nationality):
         """Change the nationality
@@ -130,15 +131,15 @@ class Person(object):
         """Change the date of birth
         Args:
             date_of_birth  : new date of birth  which will be set"""
-        if self.__validate_date_of_birth_and_death(date_of_death, date_of_birth):
+        if self.__validate_date_of_birth_and_death(date_of_birth, date_of_death):
             self.__date_of_birth = date_of_birth
 
-    def set_date_of_death(self, date_of_death, date_of_birth):
+    def set_date_of_death(self, date_of_birth, date_of_death):
         """Change the date of death
 
         Args:
             date_of_death  : new date of death  which will be set"""
-        if self.__validate_date_of_birth_and_death(date_of_death, date_of_birth):
+        if self.__validate_date_of_birth_and_death(date_of_birth, date_of_death):
             self.__date_of_death = date_of_death
 
     def set_gender(self, gender):
@@ -174,12 +175,12 @@ class Person(object):
             return True
         return False
 
-    def __validate_date_of_birth_and_death(self, date_of_death, date_of_birth):
+    def __validate_date_of_birth_and_death(self, date_of_birth, date_of_death):
         """Check if date of birth was before date of death(if it was)
 
         Returns:
             True if date of birth was before date of death, otherwise false"""
-        if DateUtils.get_younger(date_of_death, date_of_birth) == date_of_birth:
+        if DateUtils.get_younger(date_of_birth, date_of_death) == date_of_birth:
             return True
         return False
 
@@ -206,17 +207,18 @@ def add_person(people):
     month = int(input("Write month of birth: "))
     year = int(input("Write year of birth: "))
     date_of_birth = Date(day, month, year)
-    date_of_death = input("Are they dead? Answer using 'yes' or 'no'")
-    if date_of_death == "yes":
+    while gender not in ["male", "female"]:
+        gender = input("Write the gender of the person: ")
+    photo_link = input("Add photo_link link of the person: ")
+    is_dead = input("Are they dead? Answer using 'yes' or 'no'")
+    if is_dead == "yes":
         day = int(input("Write day of death: "))
         month = int(input("Write month of death: "))
         year = int(input("Write year of death: "))
         date_of_death = Date(day, month, year)
-    while gender not in ["male", "female"]:
-        gender = input("Write the gender of the person: ")
-    photo_link = input("Add photo_link link of the person: ")
-    people.append(
-        Person(
-            name, surname, nationality, date_of_birth, gender, photo_link, date_of_death
-        )
-    )
+        people.append(
+            Person(
+                name, surname, nationality, date_of_birth, gender, photo_link, date_of_death
+            ))
+    else:
+        people.append(Person(name, surname, nationality, date_of_birth, gender, photo_link))

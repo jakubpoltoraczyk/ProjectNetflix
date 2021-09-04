@@ -10,7 +10,7 @@ def main():
     people[0].set_name(name)
     print(people[0].get_name())
     print(people[0].get_age())
-    print(people[0].get_date_of_death(date_of_death))
+    print(people[0].get_date_of_death())
 
 
 main()
