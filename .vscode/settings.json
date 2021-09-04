@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./srcback/person"
+        "./srcback/person",
+        "./srcback/date"
     ]
 }
