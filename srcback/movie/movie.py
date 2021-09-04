@@ -1,7 +1,14 @@
+from date import Date
+from dateutils import DateUtils
+from director import Director
+import datetime
+
+now = datetime.datetime.now()
+
 class Movie:
     """Class, which represents movie object with some basic information"""
 
-    def __init__(self, actors):
+    def __init__(self, actors, director, description, release_date, rating):
         """Create new movie object
 
         Params:
@@ -12,10 +19,10 @@ class Movie:
             rating (int): Rating of the movie
         """
         self.__actors = actors
-        #self.__director = director
-        #self.__descrption = description
-        #self.__release_date = release_date
-        #self.__rating = rating
+        self.__director = director
+        self.__description = description
+        self.__release_date = release_date
+        self.__rating = rating
 
     def get_number_of_actors(self):
         """Provide number of actors at the list of actors
@@ -43,10 +50,10 @@ class Movie:
             actor (Actor): New actor, which will be added
         """
         self.__actors.append(actor)
-    
+
     def remove_actor(self, index):
         """Remove actor at the selected position from the list of actors
-        
+
         Params:
             index (int): Actor position at the list of actors
         """
@@ -54,3 +61,79 @@ class Movie:
             self.__actors.pop(index)
         else:
             print("Incorrect index number:", index)
+
+    def get_director(self):
+        """Provide a director
+        Returns:
+
+            director (Director): A full information about a director"""
+        return self.__director
+
+    def change_director(self, director):
+        """Change the main director of movie
+        Args:
+
+            director (Director): Personal data about new director
+        """
+        self.__director = director
+
+    def get_description(self):
+        """Provide a description
+        Returns:
+
+            description (moviedescription): title and description of movie"""
+        return self.__description
+
+    def change_description(self, description):
+        """Change description of movie
+        Args:
+
+            description (moviedescription): title and description of movie"""
+        self.__description = description
+
+    def get_release_date(self):
+        """Provide a date of movie premiere
+        Returns:
+
+            A date of premiere"""
+        return self.__release_date
+
+    def update_release_date(self, release_date):
+        """Update a release date
+        Args:
+
+            release_date(Date): a date of premiere"""
+        self.__release_date = release_date
+
+    def get_insist_age(self):
+        """Provide an age of movie
+        Returns:
+
+            age of movie"""
+        return DateUtils.get_difference_in_years(
+            Date.get_whole_date(now.day, now.month, now.year), self.get_release_date
+        )
+
+    def get_rating(self):
+        """Provide a rating of movie
+        Returns:
+
+            a rating of movie"""
+        return self.__rating
+
+    def change_rating(self, rating):
+        """Change rating of movie
+        Args:
+
+            rating(int): rating of movie"""
+        if self.__validate_rating(rating):
+            self.__rating = rating
+
+    def __validate_rating(self, rating):
+        """Check if rating is a number between 0 and 10
+        Returns:
+
+            True if yes, otherwise False"""
+        if 0 <= rating <= 10:
+            return True
+        return False
