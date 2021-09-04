@@ -113,10 +113,10 @@ class Date:
         return False
 
     def __validate_year(self, year):
-        """Check if year is a number between 2000 to 2022
+        """Check if year is a number between 1900 to 2022
 
         Returns:
             True if year number is correct, otherwise false"""
-        if 2000 <= year <= 2022:
+        if 1900 <= year <= 2022:
             return True
         return False
