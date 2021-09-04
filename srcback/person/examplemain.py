@@ -1,6 +1,5 @@
 from personalinformation import Person, add_person
 
-
 def main():
     people = []
     add_person(people)
@@ -8,11 +7,10 @@ def main():
         print(x.get_gender())
         print(x.get_name())
     name = input("Write new name: ")
-    age = int(input("Write new value of age"))
     people[0].set_name(name)
-    people[0].set_age(age)
     print(people[0].get_name())
     print(people[0].get_age())
+    print(people[0].get_date_of_death(date_of_death))
 
 
 main()

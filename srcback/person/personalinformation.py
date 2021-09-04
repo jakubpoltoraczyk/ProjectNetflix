@@ -1,7 +1,22 @@
+import datetime
+from dateutils import DateUtils
+from date import Date
+
+now = datetime.datetime.now()
+
 class Person(object):
     """Class which give us the most important information about a person"""
 
-    def __init__(self, name, surname, nationality, age, gender, photo_link):
+    def __init__(
+        self,
+        name,
+        surname,
+        nationality,
+        date_of_birth,
+        gender,
+        photo_link,
+        date_of_death = Date(now.day, now.month, now.year)
+    ):
         """Contains basic information about this person
 
         Params:
@@ -12,12 +27,14 @@ class Person(object):
             gender : the gender of this person
             photo_link_link : url link image of this person
         """
-        self.__name = name.capitalize()
-        self.__surname = surname.capitalize()
-        self.__nationality = nationality.capitalize()
-        self.__age = age
-        self.__gender = gender
-        self.__photo_link = photo_link
+        self.__name = self.__surname = self.__nationality = self.__date_of_birth = self.__gender = self.__photo_link = None
+        self.set_name(name)
+        self.set_surname(surname)
+        self.set_nationality(nationality)
+        self.set_date_of_birth(date_of_birth, date_of_death)
+        self.set_date_of_death(date_of_birth, date_of_death)
+        self.set_gender(gender)
+        self.set_photo_link(photo_link)
 
     def get_name(self):
         """Provide name
@@ -25,6 +42,14 @@ class Person(object):
         Returns:
             the name of person"""
         return self.__name
+
+    def get_age(self):
+        """Provide age
+
+        Returns:
+            the age of person"""
+        age = DateUtils.get_difference_in_years(date_of_death, date_of_birth)
+        return age
 
     def get_surname(self):
         """Provide surname
@@ -40,12 +65,22 @@ class Person(object):
             the nationality of this person"""
         return self.__nationality
 
-    def get_age(self):
+    def get_date_of_birth(self):
         """Provide age
 
         Returns:
-            the age of this person"""
-        return self.__age
+            the date of birth of this person"""
+        return self.__date_of_birth
+
+    def get_date_of_death(self, date_of_death):
+        """Provide age
+
+        Returns:
+            the date of death of this person, if he is still alive, prints still alive"""
+        if DateUtils.are_equal(date_of_death, Date(now.day, now.month, now.year)):
+            print("still alive")
+        else:
+            return self.__date_of_death
 
     def get_gender(self):
         """Provide gender
@@ -84,13 +119,20 @@ class Person(object):
             nationality : new nationality which will be set"""
         self.__nationality = nationality.capitalize()
 
-    def set_age(self, age):
-        """Change the age
+    def set_date_of_birth(self, date_of_birth, date_of_death):
+        """Change the date of birth
+        Args:
+            date_of_birth  : new date of birth  which will be set"""
+        if self.__validate_date_of_birth_and_death(date_of_death, date_of_birth):
+            self.__date_of_birth = date_of_birth
+
+    def set_date_of_death(self, date_of_death, date_of_birth):
+        """Change the date of death
 
         Args:
-            age : new age which will be set"""
-        if self.__validate_age(age):
-            self.__age = age
+            date_of_death  : new date of death  which will be set"""
+        if self.__validate_date_of_birth_and_death(date_of_death, date_of_birth):
+            self.__date_of_death = date_of_death
 
     def set_gender(self, gender):
         """Change the gender, only allows to use strings : "male", "female"
@@ -125,12 +167,12 @@ class Person(object):
             return True
         return False
 
-    def __validate_age(self, age):
-        """Check if age value is bigger than 0
+    def __validate_date_of_birth_and_death(self, date_of_death, date_of_birth):
+        """Check if date of birth was before date of death(if it was)
 
         Returns:
-            True if age > 0, otherwise false"""
-        if 120 > age > 0:
+            True if date of birth was before date of death, otherwise false"""
+        if DateUtils.get_younger(date_of_death, date_of_birth) == date_of_birth:
             return True
         return False
 
@@ -149,22 +191,25 @@ def add_person(people):
 
     Args:
         people: a list of actors and directorss"""
-    name = ""
-    age = 0
     gender = "xx"
-    surname = ""
-    while name == "":
-        name = input("Write the name of the person: ")
-    while surname == "":
-        surname = input("Write the surname of the person: ")
+    name = input("Write the name of the person: ")
+    surname = input("Write the surname of the person: ")
     nationality = input("Write the nationality where they were born: ")
-    while age <= 0:
-        try:
-            age = int(input("Write the age of the person: "))
-        except ValueError:
-            print("Give correct value")
-
+    day = int(input("Write day of birth: "))
+    month = int(input("Write month of birth: "))
+    year = int(input("Write year of birth: "))
+    date_of_birth = Date(day, month, year)
+    date_of_death = input("Are they dead? Answer using 'yes' or 'no'")
+    if date_of_death == "yes":
+        day = int(input("Write day of death: "))
+        month = int(input("Write month of death: "))
+        year = int(input("Write year of death: "))
+        date_of_death = Date(day, month, year)
     while gender not in ["male", "female"]:
         gender = input("Write the gender of the person: ")
     photo_link = input("Add photo_link link of the person: ")
-    people.append(Person(name, surname, nationality, age, gender, photo_link))
+    people.append(
+        Person(
+            name, surname, nationality, date_of_birth, gender, photo_link, date_of_death
+        )
+    )
