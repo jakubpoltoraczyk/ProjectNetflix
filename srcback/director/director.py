@@ -3,9 +3,10 @@ from os import getcwd
 from pathlib import Path
 
 path.append(str(Path(getcwd()).parent.absolute()) + "/person")
+from personalinformation import Person, now
 
-from personalinformation import Person
-
+path.append(str(Path(getcwd()).parent.absolute()) + "/date")
+from date import Date
 
 class Director(Person):
     """Class, which represents director
@@ -20,7 +21,6 @@ class Director(Person):
         gender,
         photo_link,
         rating,
-        efficienty,
         number_of_movies,
         date_of_death=Date(now.day, now.month, now.year),
     ):
@@ -40,9 +40,8 @@ class Director(Person):
         super().__init__(
             name, surname, nationality, date_of_birth, gender, photo_link, date_of_death
         )
-        rating = efficienty = None
+        rating = None
         self.set_rating(rating)
-        self.set_efficienty(efficienty)
         self.set_number_of_movies(number_of_movies)
 
     def get_rating(self):
@@ -57,7 +56,7 @@ class Director(Person):
 
         Returns:
             The average value of directed films in one year"""
-        return self.__efficienty
+        return float(self.__number_of_movies / self.get_age())
 
     def get_number_of_movies(self):
         """Provide number of movies directed by director
@@ -76,16 +75,10 @@ class Director(Person):
         else:
             print("Incorrect rating")
 
-    def set_efficienty(self, efficienty):
-        """Set value of efficienty
-
-        Args:
-            efficienty(float): New value of efficienty"""
-        efficienty = float(self.__number_of_movies / super().get_age())
-
     def set_number_of_movies(self, number_of_movies):
         """Set new number of movies which this director has directed
 
         Args:
             movies(int): New value od movies"""
-        self.__number_of_movies = number_of_movies
+        if number_of_movies > 0:
+            self.__number_of_movies = number_of_movies
