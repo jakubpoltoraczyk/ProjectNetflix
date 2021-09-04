@@ -6,7 +6,6 @@ path.append(str(Path(getcwd()).parent.absolute()) + "/person")
 
 from personalinformation import Person
 
-
 class Actor(Person):
     """Class, which represents actor
 
