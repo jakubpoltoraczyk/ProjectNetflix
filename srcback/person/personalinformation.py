@@ -1,3 +1,9 @@
+from sys import path
+from os import getcwd
+from pathlib import Path
+
+path.append(str(Path(getcwd()).parent.absolute()) + "/date")
+
 import datetime
 from dateutils import DateUtils
 from date import Date
@@ -23,9 +29,10 @@ class Person(object):
             name : the name of this person writing capital letter
             surname: the surname of person writing capital letter
             nationality : nationality writing capital letter where she/he live
-            age(int) : the age of this person
+            date_of_birth:  the date of birth of this person
             gender : the gender of this person
             photo_link_link : url link image of this person
+            date_of_death:  the date of death of this person
         """
         self.__name = self.__surname = self.__nationality = self.__date_of_birth = self.__gender = self.__photo_link = None
         self.set_name(name)
