@@ -1,6 +1,6 @@
 Title: Create base piece of work class
 Reported: 25.08.2021 by Jakub Półtoraczyk
-Assigned: Filip Półtoraczyk
+Assigned: Jakub Półtoraczyk
 
 Description: 
     Create a class, which will be a base class for two classes: movie and series. 
