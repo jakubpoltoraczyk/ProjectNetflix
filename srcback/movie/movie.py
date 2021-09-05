@@ -5,6 +5,7 @@ import datetime
 
 now = datetime.datetime.now()
 
+
 class Movie:
     """Class, which represents movie object with some basic information"""
 
