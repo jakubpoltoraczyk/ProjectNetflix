@@ -1,6 +1,9 @@
 {
     "python.analysis.extraPaths": [
         "./srcback/person",
-        "./srcback/date"
+        "./srcback/date",
+        "./srcback/actor",
+        "./srcback/director",
+        "./srcback/moviedescription"
     ]
 }

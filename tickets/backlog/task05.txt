@@ -1,8 +1,7 @@
-Title: Create base piece of work class
+Title: Create movie class
 Reported: 25.08.2021 by Jakub Półtoraczyk
-Assigned: Jakub Półtoraczyk
+Assigned: Jakub Półtoraczyk && Filip Półtoraczyk
 
 Description: 
-    Create a class, which will be a base class for two classes: movie and series. 
-    Consider common properties (like e.g. title, watched-finished date, mark etc.) and methods, which will provide easily access to them
+    Create a class, which will be a representation of movie object.
     

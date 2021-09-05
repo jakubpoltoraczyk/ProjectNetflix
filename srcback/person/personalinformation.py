@@ -84,11 +84,11 @@ class Person(object):
         """Provide age
 
         Returns:
-            the date of death of this person, if he is still alive, prints still alive"""
-        if DateUtils.are_equal(self.__date_of_death, Date(now.day, now.month, now.year)):
-            print("still alive")
-        else:
+            the date of death of this person, if he is still alive, raise an excepiton and print still alive"""
+        if not DateUtils.are_equal(self.__date_of_death, Date(now.day, now.month, now.year)):
             return self.__date_of_death
+        else:
+            raise Exception("Still alive")
 
     def get_gender(self):
         """Provide gender
