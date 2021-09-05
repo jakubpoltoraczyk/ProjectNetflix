@@ -40,6 +40,7 @@ class Director(Person):
         super().__init__(
             name, surname, nationality, date_of_birth, gender, photo_link, date_of_death
         )
+        self.__rating = self.__number_of_movies = None
         self.set_rating(rating)
         self.set_number_of_movies(number_of_movies)
 

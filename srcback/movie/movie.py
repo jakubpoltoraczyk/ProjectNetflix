@@ -38,6 +38,9 @@ class Movie:
 
         Params:
             index (int): Actor position at the list of actors
+        
+        Returns:
+            actors[index]: One element from list of Actors objects, which holds information about actor
         """
         if 0 <= index < len(self.__actors):
             return self.__actors[index]
@@ -67,14 +70,14 @@ class Movie:
         """Provide a director
         Returns:
 
-            director (Director): A full information about a director"""
+            director : Instance of Director class, which holds information about movie director"""
         return self.__director
 
     def change_director(self, director):
         """Change the main director of movie
         Args:
 
-            director (Director): Personal data about new director
+            director : instance of Director class, give personal data about new director
         """
         self.__director = director
 
@@ -82,14 +85,14 @@ class Movie:
         """Provide a description
         Returns:
 
-            description (moviedescription): title and description of movie"""
+            description : object of moviedescription class, contains title and description of movie"""
         return self.__description
 
     def change_description(self, description):
         """Change description of movie
         Args:
 
-            description (moviedescription): title and description of movie"""
+            description : object of moviedescription class, contains title and description of movie"""
         self.__description = description
 
     def get_release_date(self):
@@ -97,13 +100,13 @@ class Movie:
         Returns:
 
             A date of premiere"""
-        return Date.get_whole_date(self.__release_date)
+        return self.__release_date
 
     def update_release_date(self, release_date):
         """Update a release date
         Args:
 
-            release_date(Date): a date of premiere"""
+            release_date: object of Date class, contains a date of premiere"""
         self.__release_date = release_date
 
     def get_insist_age(self):
@@ -112,7 +115,7 @@ class Movie:
 
             age of movie"""
         return DateUtils.get_difference_in_years(
-            Date.get_whole_date(now.day, now.month, now.year), self.get_release_date
+            Date(now.day, now.month, now.year), self.get_release_date
         )
 
     def get_rating(self):
@@ -129,6 +132,9 @@ class Movie:
             rating(int): rating of movie"""
         if self.__validate_rating(rating):
             self.__rating = rating
+        else:
+            print("incorrect value")
+        
 
     def __validate_rating(self, rating):
         """Check if rating is a number between 0 and 10
