@@ -1,0 +1,45 @@
+Title: Create main function of program: ProjectNetflix
+Reported: 05.09.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+
+Description: 
+    At first create some kind of movies list and then prepare operations related to this list.
+    You should implement most of available functionalities, but you don't have to implement everything - it's your decision.
+    Also don't worry if something will go wrong, at the beginning it's difficult to create such big program.
+    Please don't contain reading and writing to files - that will be the last part of our `terminal` version of this program.
+    One tip from me: I suggest to use many functions instead of one, so don't do something like this:
+    ```
+    def main():
+        movies = [Movie(...), Movie(...), ...]
+        while True:
+            option = None
+
+            # block with choosing option
+            
+            if option == 1:
+                # block with adding new movie
+            if option == 2:
+                # block with removing movie
+            if option == 3:
+                # block with changing information about movie
+
+            # and so on
+    ```
+    I suggest to do something like this instead:
+    ```
+    def main()
+        movies = [Movie(...), Movie(...), ...]
+        while True:
+            option = get_option()
+        
+        if option == 1:
+            add_new_movie()
+        if option == 2:
+            remove_movie()
+        if option == 3:
+            change_movie_information()
+        
+        # and so on
+    ```
+    So separate main function into many smaller functions and these smaller functions into smaller ones again etc. 
+    Trust me, that's will be more transparent and also you will be able to fix bugs faster.
