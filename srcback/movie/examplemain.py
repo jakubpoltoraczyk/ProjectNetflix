@@ -28,7 +28,15 @@ def main():
             "John", "Kitchen", "USA", Date(10,9,1951), "male", "johnjohn-kitchen.com", 4.1, Date(30,12,2009)
         )]
 
-    movie = Movie(actors)
+    director = Director("Mark", "Jones", "USA", Date(11, 5, 1965), "male", "some-link.com", 8.2, 10)
+
+    description = MovieDescription("Harry Potter", "A movie about a boy who lived", "A movie about a boy who lived and now is studying magic in Hogward school with his friends Ron and Hermione")
+
+    release_date = Date(2, 5, 2003)
+
+    rating = 7.5
+
+    movie = Movie(actors, director, description, release_date, rating)
 
     print("At the beginning:")
     display_every_actor_dataset(movie)
@@ -37,5 +45,14 @@ def main():
     
     print("\nAt the end:")
     display_every_actor_dataset(movie)
+
+    print( director.get_name(), director.get_age(), director.get_date_of_death(), director.get_date_of_birth())
+    print(movie.get_release_date())
+    release_date = Date(5, 2, 2003)
+    movie.update_release_date(release_date)
+    print(movie.get_release_date())
+    rating = 8.4
+    movie.change_rating(rating)
+    print(movie.get_rating())
 
 main()

@@ -96,7 +96,7 @@ class Movie:
         Returns:
 
             A date of premiere"""
-        return self.__release_date
+        return Date.get_whole_date(self.__release_date)
 
     def update_release_date(self, release_date):
         """Update a release date

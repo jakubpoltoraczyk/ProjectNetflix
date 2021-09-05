@@ -78,17 +78,16 @@ class Person(object):
 
         Returns:
             the date of birth of this person"""
-        return self.__date_of_birth
+        return Date.get_whole_date(self.__date_of_birth)
 
     def get_date_of_death(self):
         """Provide age
 
         Returns:
-            the date of death of this person, if he is still alive, prints still alive"""
+            the date of death of this person, if he is still alive, return print still alive"""
         if DateUtils.are_equal(self.__date_of_death, Date(now.day, now.month, now.year)):
-            print("still alive")
-        else:
-            return self.__date_of_death
+            return "still alive"
+        return Date.get_whole_date(self.__date_of_death)
 
     def get_gender(self):
         """Provide gender
