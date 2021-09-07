@@ -4,6 +4,7 @@
         "./srcback/date",
         "./srcback/actor",
         "./srcback/director",
-        "./srcback/moviedescription"
+        "./srcback/moviedescription",
+        "./srcback/movie"
     ]
 }
