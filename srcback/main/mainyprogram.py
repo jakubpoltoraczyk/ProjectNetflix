@@ -39,7 +39,7 @@ def add_date_of_birth():
 
 def add_date_of_death():
     click = input("If person is still alive write yes, otherwise no")
-    if click =="yes":
+    if click =="no":
         day = int(input("Write day of date of death: "))
         month = int(input("Write month of date of death: "))
         year = int(input("Write year of date of death: "))
@@ -59,9 +59,9 @@ def add_photo_link():
     return photo_link
 
 def add_rating():
-    rating = float(input("Write your own mark of this movie: "))
-    if 0 <= rating <= 10:
-        return rating
+    __rating = float(input("Write your own mark of this movie: "))
+    if 0 <= __rating <= 10:
+        return __rating
     else:
         add_rating()
 
@@ -89,20 +89,169 @@ def add_release_date():
     return release_date
     
 def create_actor():
-    click = input("Write yes if you want to add new actor to the list: ")
-    if click == "yes":
-        __actor = Actor(add_name(), add_surname(), add_nationality(), add_date_of_birth(), add_gender(), add_photo_link(), add_rating(), add_date_of_death())
+        __actor = Actor(add_name(), add_surname(), add_nationality(), add_date_of_birth(),
+         add_gender(), add_photo_link(), add_rating(), add_date_of_death())
         return __actor
-        create_actor()
 
 def create_description():
     __description = MovieDescription(add_title(), add_short_description(), add_long_description())
     return __description
 
 def create_director():
-    __director = Director(add_name(), add_surname(), add_nationality(), add_date_of_birth(), add_gender(), add_photo_link(), add_rating(), add_number_of_movies(), add_date_of_death())
+    __director = Director(add_name(), add_surname(), add_nationality(),
+     add_date_of_birth(), add_gender(), add_photo_link(), add_rating(), add_number_of_movies())
+    click = input("If director is still alive click '1'  ")
+    if click == "1":
+        day = int(input("Write day of date of death: "))
+        month = int(input("Write day of date of death: "))
+        year = int(input("Write day of date of death: "))
+        Director.set_date_of_death(day, month, year)
     return __director
 
 def create_movie(movies):
     movie = Movie([], create_director(), create_description(), add_release_date(), add_rating())
-    movie.add_new_actor(create_actor())
+    click = input("Write no if you want to stop adding new actors to the list: ")
+    while click != "no" :
+        movie.add_new_actor(create_actor())
+    movies.append(movie)
+    
+
+def get_account(users):
+    __login = input("Write your login: ")
+    if __login in users:
+        __password = input("Write your password correctly: ")
+        if users[__login] != __password:
+            print("Not correct data")
+            get_account(users)
+        else:
+            print("Enjoy your account")
+    else:
+        print("This login doesn't appear in database")
+
+def create_new_account(users):
+    login = input("Write your login: ")
+    password = input("Write your password: ")
+    password2 = input("Confirm your password: ")
+    if password ==password2:
+        users[login] = password
+    else : 
+        print("not correct data")
+
+def menu_1(users):
+    print("""
+    \t\t\tNETFLIX database MENU
+    \n
+    1 - Create new accout
+    2 - Login on your personal account
+    0 - Exit
+
+    """)
+    click = None
+    click = input("What do you choose? Write right number: ")
+    if click == "1":
+        create_new_account(users)
+        menu_1(users)
+    elif click == "2":
+        get_account(users)
+    elif click == "0":
+        exit()
+    else:
+        print("Incorrect choice!")
+        menu_1(users)
+
+def menu_2(movies, users):
+    print("""
+    \t\t\tNETFLIX database MENU
+    \n
+    1 - Add new movie
+    2 - Operate on movies
+    0 - Logout
+
+    """)
+    click = None
+    click = input("What do you choose? Write right number: ")
+    if click == "1":
+        create_movie(movies)
+        menu_2(movies, users)
+    elif click == "2":
+        a = 0
+        for movie in movies:
+            a +=1
+            print((a), "-", movie.get_description.get_title())
+            global value
+            click2 = input("\nWhich one do you choose: ")
+    elif click == "0":
+        menu_1(users)
+    else:
+        print("Incorrect choice!")
+        menu_2(movies, users)
+
+def menu_3(click2, movies):
+    print("""
+    \t\t\tNETFLIX database MENU
+    \n
+    1 - Show list of actors
+    2 - Show information about director
+    3 - Show descriptions about movie
+    4 - Get release date
+    5 - Write a personal rating of movies
+    6 - Change data about movie
+    0 - Return
+
+    """)
+
+    click = None
+    click = input("What do you choose? Write right number: ")
+    if click == "1":
+        for index in range(movies[click2-1].get_number_of_actors()):
+            actor = movies[click2-1].get_actor(index)
+            print("1 - ", actor.get_name(), actor.get_surname() )
+    if click == "2":
+        print("\t\t\t BASIC INFORMATION ABOUT DIRECTOR:\n")
+        director = movies[click2-1].get_director
+        print("Name: ",director.get_name())
+        print("Surname: ",director.get_surname()),
+        print("Age: ",director.get_age()),
+        print("Nationality: ",director.get_nationality()),
+        print("Gender: ",director.get_gender()),
+        print("url Link: ",director.get_photo_link()),
+        print("Rating: ",director.get_rating()),
+        print("Date of birth: ",director.get_date_of_birth.get_whole_date()),
+        print("Date of death: ",director.get_date_of_death.get_whole_date()),
+        print("Number of appearences: ",director.get_number_of_movies()),
+        print("Efficienty: ",director.get_efficienty(), " movies per annum")
+    if click =="3":
+        
+
+
+
+
+        for index in range(movies[click2-1].get_number_of_actors()):
+            actor = movies[click2-1].get_actor(index)
+            print(
+                "Name: ",actor.get_name(),
+                "Surname: ",actor.get_surname(),
+                "Age: ",actor.get_age(),
+                "Nationality: ",actor.get_nationality(),
+                "Gender: ",actor.get_gender(),
+                "url Link: ",actor.get_photo_link(),
+                "Rating: ",actor.get_rating(),
+            )
+
+
+
+
+
+
+def base():
+    users = {}
+    movies = []
+    menu_1(users)
+    menu_2(movies)
+    menu_3()
+    
+base()
+    
+
+
+
