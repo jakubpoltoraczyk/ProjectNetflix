@@ -83,28 +83,37 @@ def add_title():
 
 def add_release_date():
     day = int(input("Write day of date of release this movie: "))
-    month = int(input("Write day of date of release this movie: "))
-    year = int(input("Write day of date of release this movie: "))
+    month = int(input("Write month of date of release this movie: "))
+    year = int(input("Write year of date of release this movie: "))
     release_date = Date(day, month, year)
     return release_date
     
 def create_actor():
-        __actor = Actor(add_name(), add_surname(), add_nationality(), add_date_of_birth(),
-         add_gender(), add_photo_link(), add_rating(), add_date_of_death())
-        return __actor
+    print("Add basic information about an actor!\n")
+    __actor = Actor(add_name(), add_surname(), add_nationality(), add_date_of_birth(),
+        add_gender(), add_photo_link(), add_rating())
+    click = input("If actor is still alive click '1'  ")
+    if click != "1":
+        day = int(input("Write day of date of death: "))
+        month = int(input("Write month of date of death: "))
+        year = int(input("Write year of date of death: "))
+        Actor.set_date_of_death(day, month, year)
+    return __actor
 
 def create_description():
+    print("Add basic information about movie!\n")
     __description = MovieDescription(add_title(), add_short_description(), add_long_description())
     return __description
 
 def create_director():
+    print("Add basic information about the director!\n")
     __director = Director(add_name(), add_surname(), add_nationality(),
      add_date_of_birth(), add_gender(), add_photo_link(), add_rating(), add_number_of_movies())
     click = input("If director is still alive click '1'  ")
-    if click == "1":
+    if click != "1":
         day = int(input("Write day of date of death: "))
-        month = int(input("Write day of date of death: "))
-        year = int(input("Write day of date of death: "))
+        month = int(input("Write month of date of death: "))
+        year = int(input("Write year of date of death: "))
         Director.set_date_of_death(day, month, year)
     return __director
 
@@ -127,6 +136,7 @@ def get_account(users):
             print("Enjoy your account")
     else:
         print("This login doesn't appear in database")
+        menu_1(users)
 
 def create_new_account(users):
     login = input("Write your login: ")
@@ -178,8 +188,8 @@ def menu_2(movies, users):
         for movie in movies:
             a +=1
             print((a), "-", movie.get_description().get_title())
-            global value
-            click2 = input("\nWhich one do you choose: ")
+        global click2
+        click2 = int(input("\nWhich one do you choose: "))
     elif click == "0":
         menu_1(users)
     else:
@@ -206,29 +216,7 @@ def menu_3(click2, movies, users):
         for index in range(movies[click2-1].get_number_of_actors()):
             actor = movies[click2-1].get_actor(index)
             print("1 - ", actor.get_name(), actor.get_surname() )
-    elif click == "2":
-        print("\t\t\t BASIC INFORMATION ABOUT DIRECTOR:\n")
-        director = movies[click2-1].get_director
-        print("Name: ",director.get_name())
-        print("Surname: ",director.get_surname()),
-        print("Age: ",director.get_age()),
-        print("Nationality: ",director.get_nationality()),
-        print("Gender: ",director.get_gender()),
-        print("url Link: ",director.get_photo_link()),
-        print("Rating: ",director.get_rating()),
-        print("Date of birth: ",director.get_date_of_birth.get_whole_date()),
-        print("Date of death: ",director.get_date_of_death.get_whole_date()),
-        print("Number of appearences: ",director.get_number_of_movies()),
-        print("Efficienty: ",director.get_efficienty(), " movies per annum")
-    elif click =="3":
-        print("""SHORT AND LONG DESCRIPTION OF MOVIE""")
-        print("short: ", movies[click2-1].get_description().get_short_description() )
-        print("long: ", movies[click2-1].get_description().get_long_description() )
-    elif click =="4":
-        print("RELEASE DATE: ", movies[click2-1].get_release_date().get_whole_date())
-    elif click =="5":
-        print("PERSONAL RATING: ", movies[click2-1].get_rating())
-    elif click =="6":
+        menu_3(click2, movies, users)
         for index in range(movies[click2-1].get_number_of_actors()):
             actor = movies[click2-1].get_actor(index)
             print(
@@ -239,9 +227,45 @@ def menu_3(click2, movies, users):
                 "Gender: ",actor.get_gender(),
                 "url Link: ",actor.get_photo_link(),
                 "Rating: ",actor.get_rating(),
-                "Date of birth: ",actor.get_date_of_birth.get_whole_date(),
-                "Date of death: ",actor.get_date_of_death.get_whole_date(),
+                "Date of birth: ",actor.get_date_of_birth().get_whole_date()
             )
+            try:
+                print(actor.get_date_of_death().get_whole_date())
+            except Exception as e:
+                print(e)
+        menu_3(click2, movies, users)
+    elif click == "2":
+        print("\t\t\t BASIC INFORMATION ABOUT DIRECTOR:\n")
+        director = movies[click2-1].get_director()
+        print("Name: ",director.get_name())
+        print("Surname: ",director.get_surname()),
+        print("Age: ",director.get_age()),
+        print("Nationality: ",director.get_nationality()),
+        print("Gender: ",director.get_gender()),
+        print("url Link: ",director.get_photo_link()),
+        print("Rating: ",director.get_rating()),
+        print("Date of birth: ",director.get_date_of_birth().get_whole_date()),
+        try:
+                print(director.get_date_of_death().get_whole_date())
+        except Exception as e:
+            print(e)
+        print("Number of appearences: ",director.get_number_of_movies()),
+        print("Efficienty: ",director.get_efficienty(), " movies per annum")
+        menu_3(click2, movies, users)
+    elif click =="3":
+        print("""SHORT AND LONG DESCRIPTION OF MOVIE""")
+        print("short: ", movies[click2-1].get_description().get_short_description() )
+        print("long: ", movies[click2-1].get_description().get_long_description() )
+        menu_3(click2, movies, users)
+    elif click =="4":
+        print("RELEASE DATE: ", movies[click2-1].get_release_date().get_whole_date())
+        menu_3(click2, movies, users)
+    elif click =="5":
+        print("PERSONAL RATING: ", movies[click2-1].get_rating())
+        menu_3(click2, movies, users)
+    elif click =="6":
+        menu_4(click2, movies, users)
+        menu_3(click2, movies, users)
     elif click == "0":
         menu_2(movies, users)
     else:
@@ -258,12 +282,18 @@ def menu_4(click2, movies, users):
     3 - Change description
     4 - Change release date
     5 - Change your rating
+    6 - Add next actor
     0 - return
     """)
     click = None
     click = input("What do you choose? Write right number: ")
     if click =="1":
-        pass
+        print("""Writing a number decide which actor do you want to operate on: """)
+        for index in range(movies[click2-1].get_number_of_actors()):
+            actor = movies[int(click2)-1].get_actor(index)
+            print("1 - ", actor.get_name(), actor.get_surname() )
+        menu_5(click2, movies, users, actor)
+
     elif click =="2":
         print("Click ENTER if you want not to change sth!")
         name = input("New name: ")
@@ -276,21 +306,17 @@ def menu_4(click2, movies, users):
         if nationality !="":
             movies[click2-1].get_director().set_nationality(nationality)
         day = input("New day of date of birth: ")
-        if day !="":
-            month = input("New month of date of birth: ")
-        if month !="":
-            year = input("New year of date of birth: ")
-        if year !="":
+        month = input("New month of date of birth: ")
+        year = input("New year of date of birth: ")
+        if year !="" and day !="" and  month!="":
             date_of_birth = Date(int(day), int(month), int(year))
-        movies[click2-1].get_director().set_date_of_birth(date_of_birth)
+        movies[click2-1].get_director().set_date_of_birth(date_of_birth, movies[click2-1].get_director().get_date_of_death())
         day = input("New day of date of death: ")
-        if day !="":
-            month = input("New month of date of death: ")
-        if month !="":
-            year = input("New year of date of death: ")
-        if year !="":
+        month = input("New month of date of death: ")
+        year = input("New year of date of death: ")
+        if year !="" and day !="" and  month!="":
             date_of_death = Date(int(day), int(month), int(year))
-        movies[click2-1].get_director().set_date_of_death(date_of_death)
+        movies[click2-1].get_director().set_date_of_death(movies[click2-1].get_director().get_date_of_birth(), date_of_death)
         gender = input("New gender: ") 
         if gender !="":
             movies[click2-1].get_director().set_gender(gender)
@@ -304,6 +330,8 @@ def menu_4(click2, movies, users):
         if number_of_movies !="":
             movies[click2-1].get_director().set_number_of_movies(int(number_of_movies))
 
+        menu_4(click2, movies, users)
+
     elif click =="3":
         print("Click ENTER if you want not to change sth!")
         title = input("New name: ")
@@ -315,6 +343,8 @@ def menu_4(click2, movies, users):
         long_description = input("New surname: ")
         if long_description !="":
             movies[click2-1].get_description().set_long_description(long_description)
+        menu_4(click2, movies, users)
+
 
     elif click =="4":
         print("Click enter if you don't want to change it")
@@ -326,12 +356,18 @@ def menu_4(click2, movies, users):
         if year !="":
             release_date = Date(int(day), int(month), int(year))
         movies[click2-1].update_release_date(release_date)
+        menu_4(click2, movies, users)
 
     elif click == "5":
         print("Click enter if you don't want to change it")
         rating = input("Write new rating: ")
         if rating != "":
             movies[click2-1].change_rating(int(rating))
+        menu_4(click2, movies, users)
+    
+    elif click =="6":
+        create_actor()
+        menu_4(click2, movies, users)
 
     elif click == "0":
         menu_3(click2, movies, users)
@@ -339,20 +375,55 @@ def menu_4(click2, movies, users):
         print("Incorrect choice!")
         menu_4(click2, movies, users)
 
-def 
+def menu_5(click2, movies, users, actor):
+    print("Click ENTER if you want not to change sth!")
+    name = input("New name: ")
+    if name !="":
+        actor.set_name(name)
+    surname = input("New surname: ")
+    if surname !="":
+        actor.set_surname(surname)
+    nationality = input("New nationality: ")
+    if nationality !="":
+        actor.set_nationality(nationality)
+    day = input("New day of date of birth: ")
+    month = input("New month of date of birth: ")
+    year = input("New year of date of birth: ")
+    if year !="" and day !="" and  month!="":
+        date_of_birth = Date(int(day), int(month), int(year))
+    actor.set_date_of_birth(date_of_birth, actor.get_date_of_death())
+    day = input("New day of date of death: ")
+    month = input("New month of date of death: ")
+    year = input("New year of date of death: ")
+    if year !="" and day !="" and  month!="":
+        date_of_death = Date(int(day), int(month), int(year))
+    actor.set_date_of_death(actor.get_date_of_birth(), date_of_death)
+    gender = input("New gender: ") 
+    if gender !="":
+        actor.set_gender(gender)
+    photo_link = input("New photo link: ") 
+    if photo_link !="":
+        actor.set_photo_link(photo_link)
+    rating = input("New rating: ")
+    if rating !="":
+        actor.set_rating(float(rating))
+    menu_4(click2, movies, users)
 
             
 
 
-
+  
 
 
 def base():
     users = {}
     movies = []
-    menu_1(users)
-    menu_2(movies)
-    menu_3()
+    global click2
+    click2 = None
+    #menu_1(users)
+    menu_2(movies, users)
+    menu_3(click2, movies, users)
+    menu_4(click2, movies, users)
     
 base()
     
