@@ -38,13 +38,11 @@ def add_date_of_birth():
     return date_of_birth
 
 def add_date_of_death():
-    click = input("If person is still alive write yes, otherwise no")
-    if click =="no":
-        day = int(input("Write day of date of death: "))
-        month = int(input("Write month of date of death: "))
-        year = int(input("Write year of date of death: "))
-        date_of_death = Date(day, month, year)
-        return date_of_death
+    day = int(input("Write day of date of death: "))
+    month = int(input("Write month of date of death: "))
+    year = int(input("Write year of date of death: "))
+    date_of_death = Date(day, month, year)
+    return date_of_death
 
 def add_gender():
     gender = input("Write 1 if person is a women or 2 if person is a man")
@@ -94,10 +92,7 @@ def create_actor():
         add_gender(), add_photo_link(), add_rating())
     click = input("If actor is still alive click '1'  ")
     if click != "1":
-        day = int(input("Write day of date of death: "))
-        month = int(input("Write month of date of death: "))
-        year = int(input("Write year of date of death: "))
-        Actor.set_date_of_death(day, month, year)
+        __actor.set_date_of_death(__actor.get_date_of_birth(),add_date_of_death())
     return __actor
 
 def create_description():
@@ -111,17 +106,16 @@ def create_director():
      add_date_of_birth(), add_gender(), add_photo_link(), add_rating(), add_number_of_movies())
     click = input("If director is still alive click '1'  ")
     if click != "1":
-        day = int(input("Write day of date of death: "))
-        month = int(input("Write month of date of death: "))
-        year = int(input("Write year of date of death: "))
-        Director.set_date_of_death(day, month, year)
+        __director.set_date_of_death(__director.get_date_of_birth(),add_date_of_death())
     return __director
 
 def create_movie(movies):
     movie = Movie([], create_director(), create_description(), add_release_date(), add_rating())
+    click = None
     click = input("Write no if you want to stop adding new actors to the list: ")
     while click != "no" :
         movie.add_new_actor(create_actor())
+        click = input("Write no if you want to stop adding new actors to the list: ")
     movies.append(movie)
     
 
@@ -215,47 +209,46 @@ def menu_3(click2, movies, users):
     if click == "1":
         for index in range(movies[click2-1].get_number_of_actors()):
             actor = movies[click2-1].get_actor(index)
-            print("1 - ", actor.get_name(), actor.get_surname() )
-        menu_3(click2, movies, users)
-        for index in range(movies[click2-1].get_number_of_actors()):
-            actor = movies[click2-1].get_actor(index)
-            print(
-                "Name: ",actor.get_name(),
-                "Surname: ",actor.get_surname(),
-                "Age: ",actor.get_age(),
-                "Nationality: ",actor.get_nationality(),
-                "Gender: ",actor.get_gender(),
-                "url Link: ",actor.get_photo_link(),
-                "Rating: ",actor.get_rating(),
-                "Date of birth: ",actor.get_date_of_birth().get_whole_date()
-            )
-            try:
-                print(actor.get_date_of_death().get_whole_date())
-            except Exception as e:
-                print(e)
+            print(index+1, actor.get_name(), actor.get_surname() )
+        chose_actor = int(input("About which actor you want to get information: "))
+        actor = movies[click2-1].get_actor(chose_actor-1)
+        print(
+            "\nName: ",actor.get_name(),
+            "\nSurname: ",actor.get_surname(),
+            "\nAge: ",actor.get_age(),
+            "\nNationality: ",actor.get_nationality(),
+            "\nGender: ",actor.get_gender(),
+            "\nurl Link: ",actor.get_photo_link(),
+            "\nRating: ",actor.get_rating(),
+            "\nDate of birth: ",actor.get_date_of_birth().get_whole_date()
+        )
+        try:
+            print("\n", actor.get_date_of_death().get_whole_date())
+        except Exception as e:
+            print(e)
         menu_3(click2, movies, users)
     elif click == "2":
         print("\t\t\t BASIC INFORMATION ABOUT DIRECTOR:\n")
         director = movies[click2-1].get_director()
-        print("Name: ",director.get_name())
-        print("Surname: ",director.get_surname()),
-        print("Age: ",director.get_age()),
-        print("Nationality: ",director.get_nationality()),
-        print("Gender: ",director.get_gender()),
-        print("url Link: ",director.get_photo_link()),
-        print("Rating: ",director.get_rating()),
-        print("Date of birth: ",director.get_date_of_birth().get_whole_date()),
+        print("\nName: ",director.get_name())
+        print("\nSurname: ",director.get_surname()),
+        print("\nAge: ",director.get_age()),
+        print("\nNationality: ",director.get_nationality()),
+        print("\nGender: ",director.get_gender()),
+        print("\nurl Link: ",director.get_photo_link()),
+        print("\nRating: ",director.get_rating()),
+        print("\nDate of birth: ",director.get_date_of_birth().get_whole_date()),
         try:
                 print(director.get_date_of_death().get_whole_date())
         except Exception as e:
             print(e)
-        print("Number of appearences: ",director.get_number_of_movies()),
-        print("Efficienty: ",director.get_efficienty(), " movies per annum")
+        print("\nNumber of appearences: ",director.get_number_of_movies()),
+        print("\nEfficienty: ",director.get_efficienty(), " movies per annum")
         menu_3(click2, movies, users)
     elif click =="3":
         print("""SHORT AND LONG DESCRIPTION OF MOVIE""")
-        print("short: ", movies[click2-1].get_description().get_short_description() )
-        print("long: ", movies[click2-1].get_description().get_long_description() )
+        print("\nshort: ", movies[click2-1].get_description().get_short_description() )
+        print("\nlong: ", movies[click2-1].get_description().get_long_description() )
         menu_3(click2, movies, users)
     elif click =="4":
         print("RELEASE DATE: ", movies[click2-1].get_release_date().get_whole_date())
@@ -291,7 +284,7 @@ def menu_4(click2, movies, users):
         print("""Writing a number decide which actor do you want to operate on: """)
         for index in range(movies[click2-1].get_number_of_actors()):
             actor = movies[int(click2)-1].get_actor(index)
-            print("1 - ", actor.get_name(), actor.get_surname() )
+            print(index, actor.get_name(), actor.get_surname() )
         menu_5(click2, movies, users, actor)
 
     elif click =="2":
@@ -366,7 +359,7 @@ def menu_4(click2, movies, users):
         menu_4(click2, movies, users)
     
     elif click =="6":
-        create_actor()
+        movies[click2-1].add_new_actor(create_actor())
         menu_4(click2, movies, users)
 
     elif click == "0":
@@ -377,6 +370,8 @@ def menu_4(click2, movies, users):
 
 def menu_5(click2, movies, users, actor):
     print("Click ENTER if you want not to change sth!")
+    a = int(input(""))
+    actor = movies[int(click2)-1].get_actor(a-1)
     name = input("New name: ")
     if name !="":
         actor.set_name(name)
@@ -391,13 +386,21 @@ def menu_5(click2, movies, users, actor):
     year = input("New year of date of birth: ")
     if year !="" and day !="" and  month!="":
         date_of_birth = Date(int(day), int(month), int(year))
-    actor.set_date_of_birth(date_of_birth, actor.get_date_of_death())
+        try:
+            actor.set_date_of_birth(date_of_birth, actor.get_date_of_death())
+        except:
+            actor.set_date_of_birth(date_of_birth, Date(now.day, now.month, now.year))
+    else:
+        pass
     day = input("New day of date of death: ")
     month = input("New month of date of death: ")
     year = input("New year of date of death: ")
     if year !="" and day !="" and  month!="":
         date_of_death = Date(int(day), int(month), int(year))
-    actor.set_date_of_death(actor.get_date_of_birth(), date_of_death)
+        actor.set_date_of_death(actor.get_date_of_birth(), date_of_death)
+        
+    else:
+        pass
     gender = input("New gender: ") 
     if gender !="":
         actor.set_gender(gender)
@@ -420,7 +423,7 @@ def base():
     movies = []
     global click2
     click2 = None
-    #menu_1(users)
+    menu_1(users)
     menu_2(movies, users)
     menu_3(click2, movies, users)
     menu_4(click2, movies, users)
