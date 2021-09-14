@@ -1,0 +1,9 @@
+Title: Add real file database for user accounts
+Reported: 14.09.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+
+Description:
+    To practice using files in Python, create simple database for user accounts.
+    Purpose of this task is to give a possibility to create account in one run of program and will be able to
+    log in to this account in next runs of program.
+    You should also add possibility to delete account!

@@ -1,0 +1,15 @@
+Title: Show movies in order specified by ranking
+Reported: 14.09.2021 by Jakub Półtoraczyk
+Assigned: Filip Półtoraczyk
+
+Description:
+    Please implement sorting created film by their rating.
+    Each `show_movies` call should display something like this:
+    ```
+    1). Movie02 - 9.8
+    2). Movie04 - 7.6
+    3). Movie03 - 6.5
+    4). Movie01 - 6.5
+    5). Movie05 - 5.0
+    ```
+    Do not use any ready Python sorting algorithms and so on, create your own one!
