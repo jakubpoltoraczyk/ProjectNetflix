@@ -178,9 +178,7 @@ def menu_2(movies, users):
         create_movie(movies)
         menu_2(movies, users)
     elif click == "2":
-        for x in range(len(movies)):
-            x +=1
-            print((x), "-", sorting(movies))
+        print(sorting(movies))
         global click2
         click2 = int(input("\nWhich one do you choose: "))
     elif click == "0":
@@ -418,11 +416,11 @@ def sorting(movies):
     tab2 = []
     sort_movie = {}
     for x in movies:
-        tab1.append(x.get_title())
+        tab1.append(x.get_description().get_title())
         tab2.append(x.get_rating())
     for x in range(0, len(tab1)):
         for x in range(0,len(tab1)-1):
-            if tab2[x]>tab2[x+1]:
+            if tab2[x]<tab2[x+1]:
                 b = tab2[x+1]
                 tab2[x+1] = tab2[x]
                 tab2[x] = b
@@ -433,7 +431,7 @@ def sorting(movies):
                 movies[x+1] = movies[x]
                 movies[x] = b
     for x in range(0, len(tab1)):
-        sort_movie[tab1[x]] = tab2[x]
+        sort_movie[x+1] = (tab1[x],tab2[x])
     return sort_movie
 
     
